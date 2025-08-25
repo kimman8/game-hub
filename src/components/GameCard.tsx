@@ -1,7 +1,16 @@
 import { Game } from '@/hooks/useFetchGames';
-import { Card, CardBody, Heading, Image, VStack } from '@chakra-ui/react';
+import {
+  Card,
+  CardBody,
+  Heading,
+  HStack,
+  Image,
+  Text,
+  VStack,
+} from '@chakra-ui/react';
 
 import PlatformIconList from './PlatformIconList';
+import CriticScore from './CriticScore';
 
 interface GameCardProps {
   game: Game;
@@ -14,9 +23,12 @@ const GameCard = ({ game }: GameCardProps) => {
         <Image src={game.background_image} />
         <CardBody>
           <Heading fontSize="2xl">{game.name}</Heading>
-          <PlatformIconList
-            platforms={game.parent_platforms.map((p) => p.platform)}
-          />
+          <HStack justifyContent="space-between">
+            <PlatformIconList
+              platforms={game.parent_platforms.map((p) => p.platform)}
+            />
+            <CriticScore score={game.metacritic} />
+          </HStack>
         </CardBody>
       </VStack>
     </Card>
