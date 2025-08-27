@@ -18,7 +18,7 @@ interface GameCardProps {
 
 const GameCard = ({ game }: GameCardProps) => {
   return (
-    <Card width="300px" borderRadius={10} overflow="hidden">
+    <Card>
       <VStack>
         <Image src={getCroppedImageURL(game.background_image)} />
         <CardBody>
