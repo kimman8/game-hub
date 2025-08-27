@@ -8,7 +8,7 @@ const GameGrid = () => {
   const skeletons = [
     1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 13, 14, 15, 16, 17, 19, 20,
   ];
-  const { error, games, loading } = useFetchGames();
+  const { error, data, loading } = useFetchGames();
   return (
     <>
       {error && <Text>{error}</Text>}
@@ -25,7 +25,7 @@ const GameGrid = () => {
             </GameCardContainer>
           ))}
 
-        {games.map((game) => (
+        {data.map((game) => (
           <GameCardContainer>
             <GameCard key={game.id} game={game} />
           </GameCardContainer>
