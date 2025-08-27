@@ -11,6 +11,7 @@ import {
 
 import PlatformIconList from './PlatformIconList';
 import CriticScore from './CriticScore';
+import getCroppedImageURL from '@/services/img-url';
 
 interface GameCardProps {
   game: Game;
@@ -20,7 +21,7 @@ const GameCard = ({ game }: GameCardProps) => {
   return (
     <Card borderRadius={10} overflow="hidden">
       <VStack>
-        <Image src={game.background_image} />
+        <Image src={getCroppedImageURL(game.background_image)} />
         <CardBody>
           <Heading fontSize="2xl">{game.name}</Heading>
           <HStack justifyContent="space-between">
