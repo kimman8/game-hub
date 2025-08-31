@@ -1,9 +1,20 @@
-import useFetchGenres from '@/hooks/useFetchGenres';
+import useFetchGenres, { Genre } from '@/hooks/useFetchGenres';
 import getCroppedImageURL from '@/services/img-url';
-import { Text, Image, HStack, List, ListItem, Spinner } from '@chakra-ui/react';
+import {
+  Image,
+  HStack,
+  List,
+  ListItem,
+  Spinner,
+  Button,
+} from '@chakra-ui/react';
 
-const GenreList = () => {
+interface GenreListProps {
+  onSelectGenre: (genre: Genre) => void;
+}
+const GenreList = ({ onSelectGenre }: GenreListProps) => {
   const { data, error, loading } = useFetchGenres();
+
   return (
     <List>
       {error && null}
@@ -19,7 +30,13 @@ const GenreList = () => {
               borderRadius={8}
               mr={2}
             />
-            <Text fontSize="lg">{genre.name}</Text>
+            <Button
+              variant="link"
+              fontSize="lg"
+              onClick={() => onSelectGenre(genre)}
+            >
+              {genre.name}
+            </Button>
           </HStack>
         </ListItem>
       ))}
