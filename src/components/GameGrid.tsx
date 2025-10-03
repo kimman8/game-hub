@@ -5,19 +5,16 @@ import GameCardSkeleton from './GameCardSkeleton';
 import GameCardContainer from './GameCardContainer';
 import { Genre } from '@/hooks/useFetchGenres';
 import { Platform } from '@/hooks/useFetchPlatforms';
+import { GameQuery } from '@/App';
 
 interface GameGridProps {
-  selectedGenre: Genre | null;
-  selectedPlatform: Platform | null;
+  gameQuery: GameQuery;
 }
-const GameGrid = ({ selectedGenre, selectedPlatform }: GameGridProps) => {
+const GameGrid = ({ gameQuery }: GameGridProps) => {
   const skeletons = [
     1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 13, 14, 15, 16, 17, 19, 20,
   ];
-  const { error, data, loading } = useFetchGames(
-    selectedGenre,
-    selectedPlatform
-  );
+  const { error, data, loading } = useFetchGames(gameQuery);
   return (
     <>
       {error && <Text>{error}</Text>}
