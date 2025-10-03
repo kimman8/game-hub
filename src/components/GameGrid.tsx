@@ -4,15 +4,20 @@ import GameCard from './GameCard';
 import GameCardSkeleton from './GameCardSkeleton';
 import GameCardContainer from './GameCardContainer';
 import { Genre } from '@/hooks/useFetchGenres';
+import { Platform } from '@/hooks/useFetchPlatforms';
 
 interface GameGridProps {
   selectedGenre: Genre | null;
+  selectedPlatform: Platform | null;
 }
-const GameGrid = ({ selectedGenre }: GameGridProps) => {
+const GameGrid = ({ selectedGenre, selectedPlatform }: GameGridProps) => {
   const skeletons = [
     1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 13, 14, 15, 16, 17, 19, 20,
   ];
-  const { error, data, loading } = useFetchGames(selectedGenre);
+  const { error, data, loading } = useFetchGames(
+    selectedGenre,
+    selectedPlatform
+  );
   return (
     <>
       {error && <Text>{error}</Text>}
